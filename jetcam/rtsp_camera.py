@@ -31,8 +31,8 @@ class RTSPCamera(Camera):
         atexit.register(self.cap.release)
                 
     def _gst_str(self):
-        #return 'rtspsrc location={} latency=0 ! decodebin ! videorate ! videoscale ! video/x-raw,width={},height={},framerate={}/1 ! appsink sync=false'.format(self.capture_source, self.capture_width, self.capture_height, self.capture_fps)
-        return 'rtspsrc location={} latency=0 ! rtph264depay ! h264parse ! avdec_h264 ! videoconvert ! appsink'.format(self.capture_source)
+        return 'rtspsrc location={} latency=0 ! rtph264depay ! h264parse ! avdec_h264 ! videorate ! videoscale ! video/x-raw,framerate={}/1,width={},height={} ! queue ! nvvidconv ! appsink sync=false'.format(self.capture_source, self.capture_fps, self.capture_width, self.capture_height)
+            
     def _read(self):
         re, image = self.cap.read()
         if re:

@@ -16,7 +16,6 @@ class RTSPCamera(Camera):
     def __init__(self, *args, **kwargs):
         super(RTSPCamera, self).__init__(*args, **kwargs)
         try:
-            print(self._gst_str())
             self.cap = cv2.VideoCapture(self._gst_str(), cv2.CAP_GSTREAMER)
 
             re , image = self.cap.read()

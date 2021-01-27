@@ -8,7 +8,7 @@ import traitlets
 
 class RTSPCamera(Camera):
     
-    capture_fps = traitlets.Integer(default_value=30)
+    capture_fps = traitlets.Integer(default_value=25)
     capture_width = traitlets.Integer(default_value=640)
     capture_height = traitlets.Integer(default_value=480)   
     capture_source = traitlets.Any(default_value='rtsp://localhost:8080')
